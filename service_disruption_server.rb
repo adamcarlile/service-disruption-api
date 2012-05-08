@@ -25,5 +25,5 @@ end
 
 def set_network_ivar
   @network = ServiceDisruption.network
-  @network.update! if ServiceDisruption.network.updated_at > 30.seconds.ago
+  @network.update! if @network.updated_at < 30.seconds.ago
 end
