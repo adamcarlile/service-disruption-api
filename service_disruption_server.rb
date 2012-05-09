@@ -20,7 +20,11 @@ end
 get '/network/:line' do
   set_network_ivar
   @line = @network.lines.select {|x| x.name.downcase.parameterize == params[:line]}.first
-  render :rabl, :line, :format => "json"
+  if @line
+    render :rabl, :line, :format => "json"
+  else
+    not_found
+  end
 end
 
 def set_network_ivar
